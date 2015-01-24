@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://payments.digitalriver.com/CommercePayments/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="CommercePayments" 
+	targetNamespace="http://payments.digitalriver.com/CommercePayments/">
+	<!-- Version:GPS_2_11 -->
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://payments.digitalriver.com/CommercePayments/"
+		    xmlns:types="http://payments.digitalriver.com/CommercePayments/"
+			elementFormDefault="qualified">
+			<xsd:include schemaLocation="CommercePayments_1_1_10.xsd" />
+		</xsd:schema></wsdl:types>
+	<wsdl:message name="initiatePaymentRequest">
+		<wsdl:part name="InitiatePaymentRequest" element="tns:InitiatePaymentRequest" />
+	</wsdl:message>
+	<wsdl:message name="initiatePaymentResponse">
+		<wsdl:part name="InitiatePaymentResponse" element="tns:InitiatePaymentResponse" />
+	</wsdl:message>
+	<wsdl:message name="captureOrderRequest">
+		<wsdl:part name="CaptureOrderRequest" element="tns:CaptureOrderRequest" />
+	</wsdl:message>
+	<wsdl:message name="captureOrderResponse">
+		<wsdl:part name="CaptureOrderResponse" element="tns:CaptureOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="cancelOrderRequest">
+		<wsdl:part name="CancelOrderRequest" element="tns:CancelOrderRequest" />
+	</wsdl:message>
+	<wsdl:message name="cancelOrderResponse">
+		<wsdl:part name="CancelOrderResponse" element="tns:CancelOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="refundOrderRequest">
+		<wsdl:part name="RefundOrderRequest" element="tns:RefundOrderRequest" />
+	</wsdl:message>
+	<wsdl:message name="refundOrderResponse">
+		<wsdl:part name="RefundOrderResponse" element="tns:RefundOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="storeTokenRequest">
+		<wsdl:part name="StoreTokenRequest" element="tns:StoreTokenRequest" />
+	</wsdl:message>
+	<wsdl:message name="storeTokenResponse">
+		<wsdl:part name="StoreTokenResponse" element="tns:StoreTokenResponse" />
+	</wsdl:message>
+	<wsdl:message name="queryOrderRequest">
+		<wsdl:part name="QueryOrderRequest" element="tns:QueryOrderRequest" />
+	</wsdl:message>
+	<wsdl:message name="queryOrderResponse">
+		<wsdl:part name="QueryOrderResponse" element="tns:QueryOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="RequestFaultMessage">
+		<wsdl:part name="RequestFault" element="tns:RequestFault" />
+	</wsdl:message>
+	<wsdl:message name="completePaymentRequest">
+		<wsdl:part name="CompletePaymentRequest" element="tns:CompletePaymentRequest" />
+	</wsdl:message>
+	<wsdl:message name="completePaymentResponse">
+		<wsdl:part name="CompletePaymentResponse" element="tns:CompletePaymentResponse" />
+	</wsdl:message>
+	<wsdl:message name="originalCreditRequest">
+		<wsdl:part name="OriginalCreditRequest" element="tns:OriginalCreditRequest" />
+	</wsdl:message>
+	<wsdl:message name="originalCreditResponse">
+		<wsdl:part name="OriginalCreditResponse" element="tns:OriginalCreditResponse" />
+	</wsdl:message>
+	<wsdl:message name="getPaymentMethodsRequest">
+		<wsdl:part name="GetPaymentMethodsRequest" element="tns:GetPaymentMethodsRequest" />
+	</wsdl:message>
+	<wsdl:message name="getPaymentMethodsResponse">
+		<wsdl:part name="GetPaymentMethodsResponse" element="tns:GetPaymentMethodsResponse" />
+	</wsdl:message>
+	<wsdl:message name="getPaymentMethodsFault">
+		<wsdl:part name="RequestFault" element="tns:RequestFault" />
+	</wsdl:message>
+	<wsdl:message name="AliveRequestMessage">
+		<wsdl:part name="AliveRequest" element="tns:AliveRequest" />
+	</wsdl:message>
+	<wsdl:message name="AliveResponseMessage">
+		<wsdl:part name="AliveResponse" element="tns:AliveResponse" />
+	</wsdl:message>
+	<wsdl:message name="complete3dRequest">
+		<wsdl:part name="Complete3dRequest" element="tns:Complete3dRequest" />
+	</wsdl:message>
+	<wsdl:message name="complete3dResponse">
+		<wsdl:part name="Complete3dResponse" element="tns:Complete3dResponse" />
+	</wsdl:message>
+	<wsdl:message name="initiate3dRequest">
+		<wsdl:part name="Initiate3dRequest" element="tns:Initiate3dRequest" />
+	</wsdl:message>
+	<wsdl:message name="initiate3dResponse">
+		<wsdl:part name="Initiate3dResponse" element="tns:Initiate3dResponse" />
+	</wsdl:message>
+	<wsdl:portType name="Order">
+		<wsdl:operation name="initiatePayment">
+			<wsdl:documentation>This request performs an order initiation and, if the order is paid with a card, a card validation and reserves the funds on the account for later capture. The authorized funds are normally reserved for five days but this may vary by bank and market. This request may refer to a previous tokenization.</wsdl:documentation>
+			<wsdl:input message="tns:initiatePaymentRequest"></wsdl:input>
+			<wsdl:output message="tns:initiatePaymentResponse"></wsdl:output>
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="captureOrder">
+			<wsdl:documentation>This method is used to complete a previous initiatePayment for payment methods that supports the authorize/capture flow (this is indicated by the capturable flag in the response). With the CaptureOrder, you optionally refer to a previous transaction ID. You must use the same OrderId as you used in the InitiatePayment method.</wsdl:documentation>
+			<wsdl:input message="tns:captureOrderRequest" />
+			<wsdl:output message="tns:captureOrderResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="refundOrder">
+			<wsdl:documentation>The RefundOrder method reverses the payment to the consumer. The RefundOrder response will have the RefundedAmount updated with the total amount of successful RefundOrder requests. The response will also contain the individual credit and/or payout transaction results.</wsdl:documentation>
+			<wsdl:input message="tns:refundOrderRequest" />
+			<wsdl:output message="tns:refundOrderResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="queryOrder">
+			<wsdl:documentation>The QueryOrder method can be sent by the merchant anytime: The response will tell you DRWP's status on that order, and will not trigger a real-time check of the latest status with 3rd parties e.g. banks.</wsdl:documentation>
+			<wsdl:input message="tns:queryOrderRequest" />
+			<wsdl:output message="tns:queryOrderResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="cancelOrder">
+			<wsdl:documentation>The CancelOrder method can be sent to void the authorization before any payment on an order have been made (CaptureOrder or auto-settled InitiatePayment). This is only supported for card payments, and may not be supported by all banks.</wsdl:documentation>
+			<wsdl:input message="tns:cancelOrderRequest"></wsdl:input>
+			<wsdl:output message="tns:cancelOrderResponse"></wsdl:output>
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="storeToken">
+			<wsdl:documentation>StoreToken is used to tokenize details about payment instruments. The token is not tied to a specific order and can be referenced in any order.</wsdl:documentation>
+			<wsdl:input message="tns:storeTokenRequest" />
+			<wsdl:output message="tns:storeTokenResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="initiate3d">
+			<wsdl:documentation>3D Secure operation. The result of this method call will be used to determine if the cardholder can be authenticated and if so, where to redirect the user for authentication and what data to send to the (Access Control Server) ACS.</wsdl:documentation>
+			<wsdl:input message="tns:initiate3dRequest" />
+			<wsdl:output message="tns:initiate3dResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="complete3d">
+			<wsdl:documentation>3D Secure operation. The result of this method will be used to determine that the authentication is authentic and has not been tampered with. You should compare as many of the elements from the output as you can with what you already know about the purchase such as amount, currency, XID. If everything checks out and the signature is valid, we have a successful authentication. The next step is to send a financial transaction such as authorize or debit.</wsdl:documentation>
+			<wsdl:input message="tns:complete3dRequest" />
+			<wsdl:output message="tns:complete3dResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="completePayment">
+			<wsdl:documentation>Supported for IBP and Redirect payment methods only. The response will trigger a real-time check to get the latest transaction status from 3rd parties e.g. banks</wsdl:documentation>
+			<wsdl:input message="tns:completePaymentRequest" />
+			<wsdl:output message="tns:completePaymentResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="alive">
+			<wsdl:documentation>Check availability of the Web Service end point.</wsdl:documentation>
+			<wsdl:input message="tns:AliveRequestMessage" />
+			<wsdl:output message="tns:AliveResponseMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="getPaymentMethods">
+			<wsdl:documentation>Retrieve the list of available payment methods based on configuration and selection.</wsdl:documentation>
+			<wsdl:input message="tns:getPaymentMethodsRequest"></wsdl:input>
+			<wsdl:output message="tns:getPaymentMethodsResponse"></wsdl:output>
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="originalCredit">
+			<wsdl:documentation>OriginalCredit  can be used to credit a card without linking the credit to a previous payment. The Order ID must be unique for this transaction type.</wsdl:documentation>
+			<wsdl:input message="tns:originalCreditRequest" />
+			<wsdl:output message="tns:originalCreditResponse" />
+			<wsdl:fault name="fault" message="tns:RequestFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CommercePaymentsSOAP" type="tns:Order">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="initiatePayment">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/initiatePayment" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="captureOrder">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/captureOrder" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="refundOrder">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/refundOrder" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="queryOrder">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/queryOrder" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="cancelOrder">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/cancelOrder" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="storeToken">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/storeToken" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="initiate3d">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/initiate3d" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="complete3d">
+
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/complete3d" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="completePayment">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/completePayment" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="alive">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/alive" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPaymentMethods">
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/getPaymentMethods" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="originalCredit">
+
+			<soap:operation
+				soapAction="http://payments.digitalriver.com/CommercePayments/originalCredit" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CommercePayments">
+		<wsdl:port binding="tns:CommercePaymentsSOAP" name="Order">
+			<soap:address location="http://ws.payments.digitalriver.com/Order" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

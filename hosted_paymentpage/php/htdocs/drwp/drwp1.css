@@ -1,0 +1,128 @@
+
+		.clasp {
+			background-color:#ff0099;
+			width:150px;
+			text-align:center;
+			margin-top:5px;
+		}
+		#myBody .clasp a, #myBody .clasp a:hover {
+			text-decoration:none;
+			color:#ffffff;
+		}
+		.lunchbox {
+			display:none;
+			font-size:9px;
+			color:#ffffff;
+			background-color:#ff6699;
+			width:150px;
+			text-align:center;
+		}
+		.clasp2 {
+			width:150px;
+			border:1px solid #66ccff;
+		}
+		#myBody .clasp2 a, #myBody .clasp2 a:hover {
+			text-decoration:none;
+			color:#66ccff;
+		}
+		.lunchbox2 {
+			font-size:11px;
+			display:none;
+			width:400px;
+			text-align:right;
+			background-color:#66ccff;
+			color:#ffffff;
+			padding:3px;
+		}
+		.clasp3 {
+			width:150px;
+			background-color:#0033ff;
+			border:0px ;
+			color:#66ccff;
+		}
+		.clasb3 {
+			align:bottom;
+			display:none;
+			width:150px;
+			background-color:#0033ff;
+			border:0px ;
+			color:#66ccff;
+		}
+		#myBody .clasp3 a, #myBody .clasp3 a:hover {
+			text-decoration:none;
+			color:#ffffff;
+		}
+		.clasp3 a {
+			color:#66ccff;
+		}
+		.clasb3 a {
+			color:#66ccff;
+		}
+		.lunchbox3 {
+			font-size:10px;
+			margin-left:150px;
+			margin-top:-14px;
+			display:none;
+			width:150px;
+			text-align:right;
+			background-color:#003399;
+			color:#66ccff;
+		}
+		.lunbx3 {
+			font-size:10px;
+			margin-left:150px;
+			margin-top:-14px;
+			display:none;
+			width:180px;
+			text-align:right;
+			background-color:#003399;
+			color:#66ccff;
+		}
+		.resbox {
+			font-size:20px;
+			text-align:left;
+			width:500px;
+		}
+		
+		.plogbox {
+			font-size:10px;
+			text-align:left;
+			width:600px;
+		}
+		
+		.lbox {
+			font-size:10px;
+			margin-left:0px;
+			margin-top:-14px;
+			width:500px;
+			text-align:right;
+			background-color:#0033ff;
+			color:#66ccff;
+		}
+
+		.leg1 {
+			font-size:28px;
+			margin-left:10px;
+			margin-top:24px;
+			margin-bottom:18px;
+			width:300px;
+			height:30px;
+			text-align:left;
+			# background-color:#0033ff;
+			color:#66ccff;
+		}
+
+	#pay .pfbc-main {
+		width: 400px;
+	}
+
+	#pay .form-actions {
+		display: inline;
+		}
+	// input [id^="pay-element-"] {
+	input {
+	width: 180px;	
+	}
+.controls {
+		width: 240px;
+	}

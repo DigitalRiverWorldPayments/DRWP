@@ -1,0 +1,2446 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0">
+			<xsd:element name="CaptureOrderResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="unbounded" minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="RefundOrderResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="unbounded" minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>			
+			<xsd:element name="OriginalCreditResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="1" minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>			
+			<xsd:element name="StoreTokenResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="1" minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CaptureOrderRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo" type="PayInfo"
+									maxOccurs="1" minOccurs="1" />
+								<xsd:element name="ReferenceTransactionId"
+									type="xsd:long" maxOccurs="1"
+									minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Transaction Reference. May be used for referencing a previous transaction that has the same OrderId.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AliveRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="MerchantTimestamp" type="xsd:dateTime"
+							minOccurs="0" />
+						<xsd:element name="MerchantInfo" type="MerchantInfo"
+							maxOccurs="1" minOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AliveResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="MerchantTimestamp"
+							type="xsd:dateTime" minOccurs="0" />
+						<xsd:element name="ServiceTimestamp"
+							type="xsd:dateTime" minOccurs="0" />
+						<xsd:element name="Status" maxOccurs="1" minOccurs="1">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="UP"></xsd:enumeration>
+									<xsd:enumeration value="DOWN"></xsd:enumeration>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Initiate3dRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo"
+									type="PayInfo" maxOccurs="1" minOccurs="1" />
+								<xsd:element name="CardInfo"
+									type="CardInfo" maxOccurs="1" minOccurs="1">
+								</xsd:element>
+								<xsd:element
+									name="Additional3dSecureInfo" type="Additional3dSecureInfo"
+									maxOccurs="1" minOccurs="1" />
+								<xsd:element name="BrowserInfo"
+									type="BrowserInfo" maxOccurs="1" minOccurs="1">
+								</xsd:element>
+								<xsd:element name="Recurring"
+									type="Recurring" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Initiate3dResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse" maxOccurs="1" minOccurs="1"/>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Complete3dRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo"
+									type="PayInfo" maxOccurs="1" minOccurs="1">
+								</xsd:element>
+								<xsd:element name="CardInfo"
+									type="CardInfo" maxOccurs="1" minOccurs="1">
+								</xsd:element>
+								<xsd:element
+									name="AuthenticationVerificationInfo"
+									type="AuthenticationVerificationInfo" maxOccurs="1"
+									minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Complete3dResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse" maxOccurs="1" minOccurs="1"/>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="RequestInfo">
+				<xsd:annotation>
+					<xsd:documentation>Holds information about the Merchant and the transaction channel.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="TransactionChannel" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A String with the name of transaction channel used to process the transaction.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="Web Online">
+									<xsd:annotation>
+										<xsd:documentation>For card not present (CNP) transactions.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="Cash Register">
+									<xsd:annotation>
+										<xsd:documentation>For cash registers or a terminal.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="Telephone">
+									<xsd:annotation>
+										<xsd:documentation>For transactions received by telephone.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="Mail">
+									<xsd:annotation>
+										<xsd:documentation>For transactions received by mail.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="FaceToFace">
+									<xsd:annotation>
+										<xsd:documentation>For transactions received when card and cardholder are present.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="TimeoutSeconds" maxOccurs="1"
+						minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The timeout, in seconds. Set by the merchant.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:int">
+								<xsd:maxInclusive value="59"></xsd:maxInclusive>
+								<xsd:minInclusive value="30"></xsd:minInclusive>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="FraudScreening"  maxOccurs="1"
+						minOccurs="0" type="FraudScreeningType">
+						<xsd:annotation>
+							<xsd:documentation>An optional field advising on fraud screening of transactions. This function is only available for merchants that are configured for fraud screening. If this field is left out, the system will act according to the configuration.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+					</xsd:complexType>
+				<xsd:simpleType name="FraudScreeningType">
+					<xsd:restriction base="xsd:token">
+					<xsd:enumeration value="Screen">
+							<xsd:annotation>
+								<xsd:documentation>Advice the system to screen the transaction. If the merchant is not configured for screening, the transaction will result in an error and it will not be screened or processed.</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					<xsd:enumeration value="Bypass">
+						<xsd:annotation>
+							<xsd:documentation>Advice the screening to be bypassed, even if the configuration says otherwise.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+					<xsd:enumeration value="Passive">
+						<xsd:annotation>
+							<xsd:documentation>Advice the screening to be carried out, but in case that resulted in a HOLD or BLOCK, the transaction will be processed anyway. This is intended only for go-live and tuning purposes.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="OrderInfo">
+				<xsd:annotation>
+					<xsd:documentation>Information about the order.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="OrderId" type="OrderId"
+						maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>A unique identifier of the order, set by the merchant. The same orderId can be used for subsequent transactions that concerns the particular order. OrderIDs must not be reused.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="OrderDescription" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The OrderDescription can be used in some Soft Descriptor scenarios.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrderDetailDescription" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Can sometimes be used in Soft Descriptor scenarios.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PhysicalOrder" type="xsd:boolean"
+						default="false" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Whether there is any physical product on the order.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CardInfo">
+				<xsd:annotation>
+					<xsd:documentation>Card related information. Althogh all elements are optional in this data type, some elements are mandatory for some transaction types and for some card types. Please refer to the integration documentation for details.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="CardNumber" minOccurs="0">
+                        <xsd:annotation>
+                        	<xsd:documentation>The Primary Account Number (PAN) aka card number.</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ExpirationDate" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The expiration date of the card.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Issue" type="xsd:int" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Issue number is required when it exists on the card. Currently only applicable on some UK domestic cards.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="StartDate" type="xsd:gYearMonth"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Card validity starting date, i.e. the card is invalid prior to this date. Currently only applicable on some UK domestic cards.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Track2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Track2 from the magnetic stripe.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OriginatingAccountType"
+						default="UNSPECIFIED" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Indicates the type of account to charge for the transaction. UNSPECIFIED is the default. CHEQUE_ACCOUNT uses the card as a debit card. CREDIT_FACILITY uses the card as a credit card. Note: Some banks default all cards to debit cards if nothing else is specified. This can lead to a declined transaction if you do not let the cardholder specify the originating account type.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="UNSPECIFIED" />
+								<xsd:enumeration value="SAVINGS_ACCOUNT" />
+								<xsd:enumeration value="CHEQUE_ACCOUNT" />
+								<xsd:enumeration value="CREDIT_FACILITY" />
+								<xsd:enumeration value="UNIVERSAL_ACCOUNT" />
+								<xsd:enumeration value="INVESTMENT_ACCOUNT" />
+								<xsd:enumeration value="ELECTRONIC_PURSE_CARD_ACCOUNT" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CardVerificationInfo">
+				<xsd:annotation>
+					<xsd:documentation>Card verification data such as CVCode and Address and card authentication data such as 3D Secure parameters.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="CardAuthentication" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A card transaction may be authenticate by an external 3DSecure operation, in which case these parameters must be set.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:choice>
+								<xsd:element name="ThreeDSecureData">
+									<xsd:complexType>
+                                        					<xsd:annotation>
+                                        						<xsd:documentation>Data required when using the 3D Secure authentication scheme. 3D Secure is available under different brands such as "Verified by Visa" and "MasterCard SecureCode". In general the more parameters you specify here the better charge back protection you get.</xsd:documentation>
+                                        					</xsd:annotation>
+                                        					<xsd:sequence>
+											<xsd:element name="Eci" type="xsd:int" maxOccurs="1" minOccurs="1">
+												<xsd:annotation>
+													<xsd:documentation>Electronic Commerce Indicator. The ECI specifies whether the cardholder completed 3D secure authentication correctly or not. Check with the appropriate card association for the correct values. Note: if you do not set the ECI in your authorize or debit transaction, you cannot claim a 3D secure liability shift</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="Cavv"
+												maxOccurs="1" minOccurs="0">
+												<xsd:annotation>
+													<xsd:documentation> Cardholder Authentication Verification Value. Known as CAVV for Verified by Visa and AAV for MasterCard SecureCode. Note: If you have a successful 3D secure authentication or a successful merchant attempt, you must provide the b64 encoded ACS Verification ID here to claim a 3D secure liability shift.</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction
+														base="xsd:token">
+														<xsd:maxLength
+															value="28">
+														</xsd:maxLength>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+											<xsd:element name="Xid"
+												maxOccurs="1" minOccurs="0">
+												<xsd:annotation>
+													<xsd:documentation>The unique 3D secure transaction identifier obtained using 3D secure authentication prior to sending the transaction. Must be submitted if you have one.</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction
+														base="xsd:token">
+														<xsd:maxLength
+															value="28">
+														</xsd:maxLength>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+                                        					</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:choice>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="CvCode" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="Value"
+									minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>The CV code printed on the back of the card. This is also known as CID and CVV2.</xsd:documentation>
+									</xsd:annotation>
+									<xsd:simpleType>
+										<xsd:restriction
+											base="xsd:token">
+											<xsd:maxLength value="4"></xsd:maxLength>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="State" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>The state of the CV code. Use predefined values.</xsd:documentation>
+									</xsd:annotation>
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:token">
+											<xsd:enumeration value="USED" />
+											<xsd:enumeration value="NO_CVCODE_ON_CARD" />
+											<xsd:enumeration value="ILLEGIBLE" />
+											<xsd:enumeration value="NOT_IMPLEMENTED" />
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="UseAVS" type="xsd:boolean"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Address Verification System. If set to true, BillingInfo Contact details will be used. For AVS, only the first address line is used, having a street number and street name, an optional PoBox, an optional AptNo, zipCode and City.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="PayInfo">
+				<xsd:annotation>
+					<xsd:documentation>PayInfo holds information about amount, currency and taxes.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="Amount" maxOccurs="1"
+						minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>A decimal amount. Only the currencies significant number of decimals will be used. Should be 0 in StoreToken requests.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:maxExclusive
+									value="10000000000000">
+								</xsd:maxExclusive>
+								<xsd:minInclusive value="0"></xsd:minInclusive>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Currency" type="Currency"
+						maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The currency used.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Tax" minOccurs="0" type="TaxType">
+						<xsd:annotation>
+							<xsd:documentation>VAT or equivalent tax information, required by some banks.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PaymentPlanCode" type="xsd:int"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Split payments over a period of time, or pay all on next credit bill.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CardTransactionResult">
+				<xsd:sequence>
+					<xsd:element name="AvsResult"
+						type="AvsVerificationResult" minOccurs="0" />
+					<xsd:element name="CvCodeResult"
+						type="CvVerificationResult" minOccurs="0" />
+					<xsd:element name="AcquirerResponse"
+						type="AcquirerResponse" minOccurs="0" />
+
+					<xsd:element name="Initiate3dResult"
+						type="Initiate3dResult" maxOccurs="1" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="Complete3dResult"
+						type="Complete3dResult" maxOccurs="1" minOccurs="0">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AvsVerificationResult">
+                <xsd:annotation>
+                	<xsd:documentation>Address Verification Result</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+					<xsd:element name="AnswerCode" type="xsd:int" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Result code mapped by Digital River for the AVS information supplied with the transaction.
+0 = Matched. All the address information matched.
+1 = Not matched. None of the address information matched.
+2 = Partial Match. Part of the address information matched. This could for instance be the zip-code.
+3 = Not processed. The merchant did not provide AVS information.
+4 = Service not available. Address not checked.
+5 = Invalid response. The acquirer sent a response which violates the acquirer's own specification.
+</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Response" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>This is the acquirer's response to the AVS information supplied with the transaction. If the acquirer did not have a response this will be an empty string. Maximum length: 100 (although this field is typically shorter).</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CvVerificationResult">
+                <xsd:annotation>
+                	<xsd:documentation>CVCode (aka CVC/CVV2/CID) verification result.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+					<xsd:element name="AnswerCode" type="xsd:int" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Result code mapped by Digital River for the CV code supplied with the transaction.
+0 = Matched.
+1 = Not matched.
+2 = Not processed. The merchant has not implemented CVCode handling.
+3 = Not present on card. Merchant has indicated that CVCode is not present on card
+4 = Service not available. The issuer is not certified to participate in the CVCode service.
+5 = Invalid response. The acquirer sent a response which violates the acquirer's own specification.</xsd:documentation>
+						</xsd:annotation></xsd:element>
+					<xsd:element name="Response" minOccurs="1"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>This is the acquirer's response to the CV code supplied with the transaction. If the acquirer did not have a response this will be an empty string. Maximum length: 50 (although this field is typically shorter)</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+                </xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AcquirerResponse">
+                		<xsd:annotation>
+                			<xsd:documentation>Response data from the acquiring institute. These values are dependent on the actual acquirer and are also system and merchant dependent.</xsd:documentation>
+              			</xsd:annotation>
+                		<xsd:sequence>
+					<xsd:element name="AnswerCode" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The acquirer's Answer Code for the transaction.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AuthorizationCode"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The acquirer's Authorization Code for the transaction.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ReferenceId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The acquiring banks Reference to the transaction.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+                </xsd:sequence>
+			</xsd:complexType>
+			<xsd:simpleType name="OrderId">
+				<xsd:annotation>
+					<xsd:documentation>The OrderId is a unique identifier of the order, set by the merchant.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:token">
+					<xsd:maxLength value="50"></xsd:maxLength>
+					<xsd:minLength value="1"></xsd:minLength>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="MerchantInfo">
+				<xsd:sequence>
+					<xsd:element name="MerchantId" type="MerchantId"
+						maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The unique Digital River World Payments merchant identification number.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SubMerchantId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Sub merchant ID can be used by the merchant to map a sub-structure of merchant entities that all process using the same merchant ID. the Sub Merchant ID could be retrieved in reports and presents a way for the merchant to sort the transactions based on sub-entities.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+
+					<xsd:element name="PosId" default="0" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Point of sale ID. Identifies the point of sales from which the transaction was sent. Only used if you have more than one point of sale. Can also be used for directing transactions towards different acquiring accounts, as specified in the merchant configuration. Chosen by the merchant after agreement with Digital River. NOTE: the POS ID parameter is case sensitive.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PosDescription" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Describes the POS ID. The POS description can be retrieved in reports. Arbitrary text.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Initiate3dResult">
+				<xsd:sequence>
+					<xsd:element name="AcsUrl" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The fully qualified URL to the 3D Secure Access Control Server (ACS) that will authenticate the card holder on behalf of the issuing bank.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2048"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AuthRequired" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Indicates if authentication was required or not.
+U = The card is not eligible for participation in the 3D Secure program.
+N = The card is eligible but not participating in the 3D Secure program.
+Y The card requires authentication.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5" />
+								<xsd:enumeration value="U" />
+								<xsd:enumeration value="N" />
+								<xsd:enumeration value="Y" />
+								<xsd:enumeration value="ERROR" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="IssuerCertificate"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The digital certificate for the issuing bank. You may need this if you are authenticating an constrained device such as an older mobile phone.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2048"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PaReq" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The base-64 encoded PAReq message to http POST to the ACS as the PaReq HTML form input parameter. Please note that the parameter name in the form is: PaReq and NOT PAReq.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1024"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Xid" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Unique 3D secure transaction identifier. Contains a 20 bytes statistically unique value that has been Base64 encoded, giving a 28 bytes result.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="28" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Complete3dResult">
+				<xsd:sequence>
+					<xsd:element name="AcsVerificationFlavor"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Identifies the type of authentiction used by the ACS</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Cavv" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Card Authentication Verification Value. A unique identifier created by the issuing bank for the authentication record in base64 format. Also known as the AAV (or Ucaf_Authentication_Data) for MasterCard transactions. For 3D secure, this value is required as an input parameter to the card authorize or debit operations.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="65"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AuthenticationResult" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The alphabetic version of the authentication result.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5" />
+								<xsd:enumeration value="Y" />
+								<xsd:enumeration value="A" />
+								<xsd:enumeration value="U" />
+								<xsd:enumeration value="N" />
+								<xsd:enumeration value="ERROR" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Eci" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>the Electronic Commerce Indicator (ECI) that specifies whether the cardholder completed authentication correctly or not. Check with the appropriate card association for the values returned. For 3D secure, this value is required as an input parameter to the card authorize or debit operations.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Last4CardholderPan"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Provides the last four digits of the card number or Primary Account Number (PAN) that is associated with the PARes.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PurchaseAmount" type="xsd:decimal"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Returns the purchase amount associated with the PARes. The format is the same as the the input format.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PurchaseCurrency" type="Currency"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Numerical ISO 4217 three digit currency code.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SignatureCheckResult" type="xsd:int" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Specifies whether the digital signature on the response message was successfully verified or not. The value is 0 if the signature is valid.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Xid" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Provides the XID associated with the PARes. This should match the XID associated with the PAReq. For 3D secure, this value is required as an input parameter to the card authorize or debit operations.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="28"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RedirectInfo">
+				<xsd:annotation>
+					<xsd:documentation>Holds information about selected bank and return URLs.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="PostUrl">
+						<xsd:annotation>
+							<xsd:documentation>Return URL for HTTP POST</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string"></xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="GetUrl">
+						<xsd:annotation>
+							<xsd:documentation>Return URL for HTTP GET</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1024"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="HttpMethodType">
+				<xsd:restriction base="xsd:token">
+					<xsd:enumeration value="GET"></xsd:enumeration>
+					<xsd:enumeration value="POST"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:complexType name="BrowserInfo">
+				<xsd:annotation>
+					<xsd:documentation>Information retrieved from the customer's browser.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="IpAddress" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>IP address reported by browser.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="45"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="HttpAccept" maxOccurs="1" minOccurs="0"
+						type="xsd:token">
+						<xsd:annotation>
+							<xsd:documentation>Value of the "Accept" request header. Mandatory for 3D secure.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="HttpAcceptLanguage" maxOccurs="1"
+						minOccurs="0" type="xsd:token">
+						<xsd:annotation>
+							<xsd:documentation>Value of the "Accept-Language" request header.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="HttpUserAgent" maxOccurs="1"
+						minOccurs="0" type="xsd:token">
+						<xsd:annotation>
+							<xsd:documentation>Value of the "User-Agent" request header. Mandatory for 3D secure.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="DnsIpAddress" maxOccurs="1"
+						minOccurs="0" type="xsd:token">
+						<xsd:annotation>
+							<xsd:documentation>IP address reported by a separate tracking mechanism.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="TimeZoneOffset" maxOccurs="1"
+						minOccurs="0" type="xsd:int">
+						<xsd:annotation>
+							<xsd:documentation>Browser's timezone offset measured in minutes.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="DeviceCategory" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Indicates what kind of device the browser is on. Mandatory for 3D secure. Contact Digital River if you are implementing for other devices than PCs or mobiles and need assistance.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="PC" />
+								<xsd:enumeration value="MOBILE" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="TimeZoneNSOffset" maxOccurs="1"
+                                         minOccurs="0" type="xsd:int">
+                                         <xsd:annotation>
+                                                <xsd:documentation>User time zone northern solstice offset measured in minutes.</xsd:documentation>
+                                         </xsd:annotation>
+                                  </xsd:element>
+                                  <xsd:element name="TimeZoneSSOffset" maxOccurs="1"
+                                         minOccurs="0" type="xsd:int">
+                                         <xsd:annotation>
+                                                <xsd:documentation>User time zone southern solstice offset measured in minutes.</xsd:documentation>
+                                         </xsd:annotation>
+                                  </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ContactInfo">
+				<xsd:sequence>
+					<xsd:element name="FirstName" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>First name of a person</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LastName" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Last name of a person</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="FullName" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Full name of a person. If first and last name are populated, leave this empty.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="51"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AddressLine1" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Line 1 of street address.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+
+					<xsd:element name="AddressLine2" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Line 2 of street address.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="City" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>City of the address.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="80"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="StateProvince" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>ISO 3166-2 state or province code (up to 3 characters).</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ZipCode" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The zip or postal code</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="30"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CountryCode" minOccurs="0"
+						maxOccurs="1" type="CountryCode">
+						<xsd:annotation>
+							<xsd:documentation>ISO-3166 A2 country code.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Phone" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Phone number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MobilePhone" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Mobile phone number. Should be a Mobile Station International Subscriber Directory Number (MSISDN) in E.164 format.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="EmailAddress" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Email address</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="120"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CompanyName" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Company name</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AddressLine3" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Line 3 of street address.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="100"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="BillingInfo">
+                <xsd:annotation>
+                	<xsd:documentation>Billing information, such as the invoicing address to a card holder.</xsd:documentation>
+                </xsd:annotation>
+				<xsd:complexContent>
+					<xsd:extension base="ContactInfo">
+		                <xsd:sequence>
+		                	<xsd:element name="SSN" maxOccurs="1"
+		                		minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>Social Security Number of card holder.</xsd:documentation>
+		                		</xsd:annotation>
+		                		<xsd:simpleType>
+		                			<xsd:restriction base="xsd:token">
+		                				<xsd:maxLength value="30"></xsd:maxLength>
+		                			</xsd:restriction>
+		                		</xsd:simpleType>
+		                	</xsd:element>
+		                	<xsd:element name="BirthDate"
+		                		type="xsd:date" maxOccurs="1" minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>Card holder's birth date.</xsd:documentation>
+		                		</xsd:annotation>
+		                	</xsd:element>
+		                	<xsd:element name="Language"
+		                		type="LanguageCode" minOccurs="0" />
+		                	<xsd:element name="DriversLicenseEnding"
+		                		maxOccurs="1" minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>Last numbers on driver's license.</xsd:documentation>
+		                		</xsd:annotation>
+		                		<xsd:simpleType>
+		                			<xsd:restriction base="xsd:token">
+		                				<xsd:maxLength value="8" />
+		                			</xsd:restriction>
+		                		</xsd:simpleType>
+		                	</xsd:element>
+		                	<xsd:element name="DriversLicenseState"
+		                		maxOccurs="1" minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>State that issued driver's license.</xsd:documentation>
+		                		</xsd:annotation>
+		                		<xsd:simpleType>
+		                			<xsd:restriction base="xsd:token">
+		                				<xsd:maxLength value="2" />
+		                			</xsd:restriction>
+		                		</xsd:simpleType>
+		                	</xsd:element>
+		                	<xsd:element name="BuyerVATNumber"
+		                		maxOccurs="1" minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>This is the number issued to the customer by a taxing authority for tax purposes when VAT is included on the sale. This is reported to the regulatory agency and used to calculate the input and output vat of particpants in the sale. Also known as the Tax Registration Number. Not used in all integrations.</xsd:documentation>
+		                		</xsd:annotation>
+		                		<xsd:simpleType>
+		                			<xsd:restriction
+		                				base="xsd:string">
+		                				<xsd:maxLength value="25"></xsd:maxLength>
+		                			</xsd:restriction>
+		                		</xsd:simpleType>
+		                	</xsd:element>
+		                	<xsd:element name="BuyerType" maxOccurs="1"
+		                		minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>Tells if the customer VAT number is for a business or for an individual purchase. Not used in all integrations.</xsd:documentation>
+		                		</xsd:annotation>
+		                		<xsd:simpleType>
+		                			<xsd:restriction
+		                				base="xsd:string">
+		                				<xsd:enumeration
+		                					value="INDIVIDUAL">
+		                				</xsd:enumeration>
+		                				<xsd:enumeration
+		                					value="BUSINESS">
+		                				</xsd:enumeration>
+		                			</xsd:restriction>
+		                		</xsd:simpleType>
+		                	</xsd:element>
+		                	<xsd:element name="CompanyTaxId"
+		                		maxOccurs="1" minOccurs="0">
+		                		<xsd:annotation>
+		                			<xsd:documentation>Country specific tax ID. E.g. for Brazil, a number, or "ISENTO".</xsd:documentation>
+		                		</xsd:annotation>
+		                		<xsd:simpleType>
+		                			<xsd:restriction base="xsd:token">
+		                				<xsd:maxLength value="50"></xsd:maxLength>
+		                			</xsd:restriction>
+		                		</xsd:simpleType>
+		                	</xsd:element>
+		                </xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="ShippingInfo">
+                <xsd:annotation>
+                	<xsd:documentation>Shipping address of customer.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexContent>
+					<xsd:extension base="ContactInfo">
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<xsd:element name="InitiatePaymentRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo"
+									type="PayInfo" maxOccurs="1" minOccurs="1" />
+								<xsd:element name="PaymentMethodInfo"
+									type="PaymentMethodInfo" minOccurs="1" />
+								<xsd:element name="AutoCapture"
+									type="xsd:boolean" maxOccurs="1" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Defaults to false. If set to true the system will automatically capture the payment of the order for card payments. For redirect payments this is simply an indicator to the partner bank whether to withdraw funds automatically or not. Not all partner banks support this.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="Recurring"
+									minOccurs="0" type="Recurring">
+									<xsd:annotation>
+										<xsd:documentation>If transaction is part of a set of recurring payments</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ShippingInfo"
+									type="ShippingInfo" minOccurs="0" />
+								<xsd:element name="BrowserInfo"
+									type="BrowserInfo" minOccurs="0" />
+								<xsd:element name="LineItem"
+									type="LineItem" maxOccurs="unbounded" minOccurs="0">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="QueryOrderRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="RetrieveTransactions" type="xsd:boolean"
+									default="false" maxOccurs="1" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Set to true if transactions are to be returned.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+
+
+			<xsd:element name="CompletePaymentRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+						<xsd:sequence>
+							<xsd:element name="ParameterString"
+								type="xsd:string" maxOccurs="1" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Name/value pairs (using equal sign and delimited with ampersand). Obtained from the redirect partner in Redirect payments.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ReferenceTransactionId" type="xsd:long"
+								maxOccurs="1" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Transaction Reference. May be used for referencing a previous transaction that has the same OrderId.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+					</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="CompletePaymentResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="unbounded" minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+
+            <xsd:complexType name="QueryOrderResponse">
+				<xsd:complexContent>
+					<xsd:extension base="OrderResponse">
+						<xsd:sequence>
+							<xsd:element name="TransactionResponse" type="TransactionResponse"
+								maxOccurs="unbounded" minOccurs="0">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+            </xsd:complexType>
+
+			<xsd:element name="QueryOrderResponse" type="QueryOrderResponse"></xsd:element>
+
+			<xsd:complexType name="PaymentMethodInfo">
+				<xsd:sequence>
+					<xsd:element name="PaymentMethod" minOccurs="1"
+						type="xsd:string" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The PaymentMethod. This may be either a PaymentMethodId or its PaymentMethodName. Example of acceptable values are 1, 121, or Nordea, VISA, MASTERCARD, Unknown Card. It is recommended to use the PaymentMethodId, since some PaymentMethodNames may have special characters. Backwards compatibility is provided by using PaymentMethodId:PaymentMethodName (like "1:Nordea"). This behavior is deprecated and only available during a transition time.
+ Available PaymentMethodId and PaymentMethodName are given by the getPaymentMethods operation.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Token" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Payment instrument Token.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="64"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ReferenceTransactionId"
+						type="xsd:long" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Transaction Reference. May be used for referencing previous transactions that has the same OrderId.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="BillingInfo"
+						type="BillingInfo" minOccurs="0" />
+					<xsd:element name="CardInfo" type="CardInfo"
+						maxOccurs="1" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="CardVerificationInfo"
+						type="CardVerificationInfo" maxOccurs="1" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="RedirectInfo"
+						type="RedirectInfo" maxOccurs="1" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="BankBillingInfo"
+						type="BankBillingInfo" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Used for Direct Debit payment method.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ExecutionDate" type="xsd:date"
+						maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Used for Direct Debit. The date of execution for the transaction. The funds will be collected from the payers account on this day. If omitted, it will be set by the server to the next available business day.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="DueDate" type="xsd:date" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Used for EFT payment methods. The due date of the consumer payment.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="InitiatePaymentResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="1" minOccurs="1">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="InternalRoutingInfo">
+                	<xsd:sequence>
+                	<xsd:element name="Credentials" type="xsd:string"
+                		maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>Placeholder for adding Credentials. There may or may not be a WSS instead.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="CallerIpAddress"
+                		type="xsd:string" maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>The IP address of the client / merchant. Populated by the OTG or PaymentPage.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="SystemLogTraceId" type="xsd:long"
+                		maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>A log trace id generated by the system recieving the request from the merchant (OTG or PaymentPage). All requests should have unique ids. This trace id will be used in all calls to all other systems taking part in the transaction.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="StartTime" type="xsd:dateTime"
+                		maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>The time the request entered the system. Populated by the OTG or PaymentPage.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="Deadline" type="xsd:dateTime"
+                		maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>The time the request must have completed. Populated by the OTG or PaymentPage.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="InternalOrigin" type="xsd:string" maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>Indicates the point of entry in Digital River's system, i.e. which service component was the one to receive the request from the merchant. Intended usage is to be able to log it in case of an error. Format: Service/Application_id@host/ip, ex: PaymentPage_1234@dc11dev01.dc11.digitalriver.com.</xsd:documentation>
+                		</xsd:annotation></xsd:element>
+                	</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="OrderResponse" type="OrderResponse"></xsd:element>
+
+			<xsd:complexType name="OrderResponse">
+				<xsd:sequence>
+					<xsd:element name="MerchantId" type="MerchantId"
+						maxOccurs="1" minOccurs="1">
+					</xsd:element>
+					<xsd:element name="OrderId" type="OrderId"
+						maxOccurs="1" minOccurs="1">
+					</xsd:element>
+					<xsd:element name="OrderAmount"
+						type="xsd:decimal" maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The expected total amount of the order.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="FulfillmentAmount"
+						type="xsd:decimal" maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Total amount reserved. When this value is set, it is a signal to the merchant that goods may be shipped. E.g. For card transactions, this is the amount that has been authorized. For EFTs, the actual funded amount is used.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="CapturedAmount"
+						type="xsd:decimal" maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Total amount captured by the merchant.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="RefundedAmount"
+						type="xsd:decimal" maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Total amount refunded.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Currency"
+						type="Currency" maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The currency used in the order.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Timestamp" type="xsd:dateTime"
+						maxOccurs="1" minOccurs="1">
+					</xsd:element>
+					<xsd:element name="OrderState" maxOccurs="1"
+						minOccurs="1">
+                        <xsd:annotation>
+                        	<xsd:documentation>Order state. Determined by the last event that occurred to the order. This is merely an indication, since several conflicting transactions may occur on an order in a random order. See the other fields in the OrderResponse for a definite answer.</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="Registered"></xsd:enumeration>
+								<xsd:enumeration value="Pending payment"></xsd:enumeration>
+								<xsd:enumeration value="Cancelled"></xsd:enumeration>
+								<xsd:enumeration value="Paid"></xsd:enumeration>
+								<xsd:enumeration value="Refunded"></xsd:enumeration>
+								<xsd:enumeration value="Disputed"></xsd:enumeration>
+								<xsd:enumeration value="Invalid"></xsd:enumeration>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Capturable" type="xsd:boolean"
+						maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Set to true if the merchant can Capture more funds on the transactions on the order.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="Currency">
+				<xsd:annotation>
+					<xsd:documentation>Identifies the currency.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:choice>
+					<xsd:element name="NumericCode" type="xsd:int">
+						<xsd:annotation>
+							<xsd:documentation>Numerical ISO 4217 three digit currency code.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="AlphabeticCode">
+						<xsd:annotation>
+							<xsd:documentation>Alphabetic ISO 4217 three letter currency code.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="3" />
+								<xsd:minLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+
+			<xsd:simpleType name="MerchantId">
+				<xsd:annotation>
+					<xsd:documentation>The unique merchant identifier. Identifies the merchant in payment system. Sometimes referred to as MID. Digital River creates the unique Merchant ID for the merchant.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:long">
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:complexType name="TransactionResponse">
+				<xsd:sequence>
+					<xsd:element name="TransactionId" type="xsd:long"
+						maxOccurs="1" minOccurs="1" />
+					<xsd:element name="TransactionState" maxOccurs="1"
+						minOccurs="1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="Registered"></xsd:enumeration>
+								<xsd:enumeration value="Processed"></xsd:enumeration>
+								<xsd:enumeration value="Declined"></xsd:enumeration>
+								<xsd:enumeration value="Rejected"></xsd:enumeration>
+								<xsd:enumeration value="System Error"></xsd:enumeration>
+								<xsd:enumeration value="Paid"></xsd:enumeration>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="StatusCode" type="xsd:int"
+						maxOccurs="1" minOccurs="1">
+					</xsd:element>
+					<xsd:element name="Description" maxOccurs="1"
+						minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="200"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="TransactionType"
+						type="xsd:string" maxOccurs="1" minOccurs="1">
+					</xsd:element>
+					<xsd:element name="PaymentMethodType"
+						type="PaymentMethodType" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Ex: Card, EFT, Direct Debit, IBP.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PaymentMethodId" type="xsd:int"
+						maxOccurs="1" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="PaymentMethodName"
+						type="PaymentMethodName" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+					<xsd:element name="PaymentMethodCategory"
+						maxOccurs="1" minOccurs="0" type="PaymentMethodCategory">
+					</xsd:element>
+					<xsd:element name="TokenizationResult"
+						type="TokenizationResult" maxOccurs="1" minOccurs="0">
+					</xsd:element>
+
+					<xsd:element name="FraudResult" type="FraudResult"
+						minOccurs="0" />
+
+					<xsd:element name="TransactionResult" maxOccurs="1"
+						minOccurs="0">
+						<xsd:complexType>
+							<xsd:choice>
+
+								<xsd:element
+									name="CardTransactionResult" type="CardTransactionResult"
+									maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element
+									name="RedirectTransactionResult"
+									type="RedirectTransactionResult" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element
+									name="OfflineTransactionResult" type="OfflineTransactionResult"
+									maxOccurs="1" minOccurs="0">
+								</xsd:element>
+							</xsd:choice>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Timestamp" type="xsd:dateTime"
+						maxOccurs="1" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="Amount" type="xsd:decimal"
+						maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A decimal amount. Only the currency's significant number of decimals will be used.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Currency" type="Currency"
+						maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The currency used.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SubMerchantId" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Sub merchant ID can be used by the merchant to map a sub-structure of merchant entities that all process using the same merchant ID. The Sub Merchant ID could be retrieved in reports and presents a way for the merchant to sort the transactions based on sub-entities.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PosId" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Point of sale ID. Identifies the point of sales from which the transaction was sent. Only used if you have more than one point of sale. Can also be used fordirecting transactions towards different acquiring accounts, as specified in the merchant configuration. Chosen by the merchant after agreement with Digital River. NOTE: the POS ID parameter is case sensitive.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PosDescription" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Describes the POS ID. The POS description can be retrieved in reports. Arbitrary text.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="RefTransactionId" type="xsd:long" maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Transaction Reference. Transaction Id of refered transaction.</xsd:documentation>
+						</xsd:annotation></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="FraudResult">
+				<xsd:annotation>
+					<xsd:documentation>Results from fraud screening.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="Status" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Fraud determination. Values: PASSED, BLOCKED, HOLD, NOT SCREENED</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="PASSED">
+									<xsd:annotation>
+										<xsd:documentation>PASSED indicates that the request is not fraud.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="BLOCKED">
+									<xsd:annotation>
+										<xsd:documentation>BLOCKED indicates that it is fraudulent.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="HOLD">
+									<xsd:annotation>
+										<xsd:documentation>HOLD suggests that the fulfillment be held for manual review.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+								<xsd:enumeration value="NOT SCREENED">
+									<xsd:annotation>
+										<xsd:documentation>The event was not screened.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:enumeration>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Code" minOccurs="1"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Response code from fraud detection service.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="10"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Message" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Human readable description of fraud determination.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="128" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="CancelOrderRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="ReferenceTransactionId"
+									type="xsd:long" maxOccurs="1"
+									minOccurs="0">
+								<xsd:annotation>
+										<xsd:documentation>Transaction Reference. May be used for referencing previous transactions that has the same OrderId.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CancelOrderResponse">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="OrderResponse">
+							<xsd:sequence>
+								<xsd:element name="TransactionResponse" type="TransactionResponse"
+									maxOccurs="unbounded" minOccurs="0">
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="BankBillingInfo">
+				<xsd:sequence>
+					<xsd:element name="BankAccountNumber" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Account number identifying an account at a given bank/bank office. Validation rules and formatting varies on market/country</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="96"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankBranchNumber" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Number/identifier for a specific bank office/branch. Use differs with market/country</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="64"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankSortCode" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Number/identifier for a specific bank office/branch. Used in conjuction with BankBranchNumber. Use differs by market/country</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankAccountIban" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Identifier for a specific bank account across all markets.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankSwiftBIC" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Used in conjuction with IBAN supplying extra routing info.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankType" type="xsd:int"
+						maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Deprecated</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="BankCity" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>City of given bank office</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankName" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Name of the bank</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="96"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankStreetName" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Street name of given bank office</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="96"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankZipCode" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Zip code (postal code) of given bank office</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CheckNumber" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Market specific check digits. Should only be used for markets needing to separate the check number form tha actual account number.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="10"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="RefundOrderRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo"
+									type="PayInfo" maxOccurs="1" minOccurs="1" />
+								<xsd:element name="PaymentMethod"
+									type="PaymentMethodName" maxOccurs="1" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>The name of the payment method, such as the card type used, e.g. VISA or UNKNOWN CARD.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+                                <xsd:element name="BillingInfo" type="BillingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+                                <xsd:element name="BillingBankInfo" type="BankBillingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+                                <xsd:choice>
+                                	<xsd:element name="Token"
+                                		maxOccurs="1" minOccurs="0">
+                                		<xsd:annotation>
+                                			<xsd:documentation>Payment instrument Token.</xsd:documentation>
+                                		</xsd:annotation>
+                                		<xsd:simpleType>
+                                			<xsd:restriction
+                                				base="xsd:token">
+                                				<xsd:maxLength
+                                					value="64">
+                                				</xsd:maxLength>
+                                			</xsd:restriction>
+                                		</xsd:simpleType>
+                                	</xsd:element>
+                                	<xsd:element
+                                		name="ReferenceTransactionId"
+                                		type="xsd:long" maxOccurs="1"
+                                		minOccurs="0">
+                                		<xsd:annotation>
+                                			<xsd:documentation>Transaction Reference. May be used for referencing previous transactions that has the same OrderId.</xsd:documentation>
+                                		</xsd:annotation>
+                                	</xsd:element>
+                                	<xsd:element name="CardInfo"
+                                		type="CardInfo" minOccurs="0" />
+                                </xsd:choice>
+				<xsd:element name="UnlimitedRefundAmount"
+                                		type="xsd:boolean" maxOccurs="1" minOccurs="0" default="false">
+                                </xsd:element>
+				</xsd:sequence>
+				</xsd:extension>
+				</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="OriginalCreditRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo"
+									type="PayInfo" maxOccurs="1" minOccurs="1" />
+								<xsd:element name="PaymentMethod"
+									type="PaymentMethodName" maxOccurs="1" minOccurs="1">
+									<xsd:annotation>
+										<xsd:documentation>The name of the payment method, such as the card type used, e.g. VISA or UNKNOWN CARD.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+                                <xsd:element name="BillingInfo" type="BillingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+                                <xsd:choice>
+                                <xsd:element name="BillingBankInfo" type="BankBillingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+                            <xsd:element name="CardInfo"
+                                		type="CardInfo" minOccurs="0" />
+                                </xsd:choice>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="OfflineTransactionResult">
+				<xsd:sequence>
+					<xsd:element name="PaymentReference" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Reference that identifies the payment. Used by consumer to indicate which order is being paid.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="100"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PaymentSlipUrl" maxOccurs="1"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>URL to the payment slip.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1024"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DueDate" type="xsd:date"
+						maxOccurs="1" minOccurs="0">
+                        <xsd:annotation>
+                        	<xsd:documentation>The date when the consumer payment is due. This is typically set when initiating the Payment, but if it is omitted the system may have set a date.</xsd:documentation>
+                        </xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RedirectTransactionResult">
+				<xsd:sequence>
+
+
+					<xsd:element name="BankAnswerCode" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Answer code returned from the bank</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BankReferenceId" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Reference ID returned from the bank.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Method" minOccurs="0"
+						type="HttpMethodType">
+						<xsd:annotation>
+							<xsd:documentation>The HTTP method to use</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Parameters" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The parameter data to include in the HTTP request to the bank</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Url" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The HTTP URL to the bank</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="TokenizationResult">
+				<xsd:sequence>
+					<xsd:element name="Token" maxOccurs="1"
+						minOccurs="1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="64"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MaskedAccountNumber"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The MaskedAccountNumber can be a bank account number or a card number, masked in order to be compliant with relevant security standards.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="96"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ExpirationDate" type="xsd:gYearMonth"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="RequestFault">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="code" type="xsd:string">
+						</xsd:element>
+						<xsd:element name="description" type="xsd:string">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="StoreTokenRequest">
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="GenericOrderRequest">
+							<xsd:sequence>
+								<xsd:element name="PayInfo"
+									type="PayInfo" maxOccurs="1" minOccurs="1">
+								</xsd:element>
+								<xsd:element name="BillingInfo"
+									type="BillingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element name="BankBillingInfo"
+									type="BankBillingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element name="CardInfo"
+									type="CardInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element name="CardVerificationInfo"
+									type="CardVerificationInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element name="ShippingInfo"
+									type="ShippingInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element name="BrowserInfo"
+									type="BrowserInfo" maxOccurs="1" minOccurs="0">
+								</xsd:element>
+								<xsd:element name="PaymentMethod" minOccurs="1"
+									type="PaymentMethodName" maxOccurs="1">
+									<xsd:annotation>
+										<xsd:documentation>The name of the payment method, such as the card type used, e.g. VISA or UNKNOWN CARD.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:extension>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:complexType name="Additional3dSecureInfo">
+				<xsd:sequence>
+					<xsd:element name="MerchantCountryCode" type="CountryCode" maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The merchant's country code.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="MerchantName" maxOccurs="1"
+						minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The merchant name to appear on the authentication page.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="25"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MerchantUrl" maxOccurs="1"
+						minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Fully qualified URL to the merchant's website or customer service. Includning "http://" or "https://" NOT used for posting back the PaRes. For instance: http://www.digitalriver.com</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:maxLength value="512"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PurchaseDescription" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The purchase description can be displayed by the issuing bank at the authentication page.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="125" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PurchaseInstallment" type="xsd:int"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Optional parameter that specifies maximum number of permitted authorizations for installment payments. Do not set this unless this is an installment payment. It should be either unset or greater than 1. The 3-D Secure protocol specifies the value as follows: An integer greater than one indicating the maximum number of permitted authorizations for installment payments. Must be included if the merchant and cardholder have agreed to installment payments.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="AuthenticationVerificationInfo">
+                <xsd:annotation>
+                	<xsd:documentation>3D Secure data to be verified by the server.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+					<xsd:element name="PaRes" type="xsd:string"
+						maxOccurs="1" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>The PaRes message received from the card holders browser as the result of the authentication at the ACS URL.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PaReq" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Use only for mobile devices (when indicated in the QualifyingInfo.DeviceCategory element of the first request). Contains the PaReq message that was sent to the issuing bank.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1024"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="IssuerCert" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Use only for mobile devices (when indicated in the QualifyingInfo.DeviceCategory element of the first request). Contains the digital certificate for the issuing bank.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2048"></xsd:maxLength>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Xid" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>Unique 3D secure transaction identifier. Contains a 20 bytes statistically unique value that has been Base64 encoded, giving a 28 bytes result.</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="28" />
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="GenericOrderRequest">
+				<xsd:sequence>
+					<xsd:element name="OrderInfo" type="OrderInfo"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="RequestInfo" type="RequestInfo"
+						maxOccurs="1" minOccurs="1" />
+					<xsd:element name="MerchantInfo" type="MerchantInfo"
+						maxOccurs="1" minOccurs="1" />
+					<xsd:element name="InternalRoutingInfo" type="InternalRoutingInfo"
+						maxOccurs="1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Internal routing information. Not to be used by Merchant.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="Recurring">
+				<xsd:sequence>
+					<xsd:element name="RecurringIndicator"
+						default="NOT_RECURRING" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Indicates if transaction is part of a set of recurring payments.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="NOT_RECURRING" />
+								<xsd:enumeration
+									value="FIRST_RECURRING" />
+								<xsd:enumeration
+									value="SUBSEQUENT_RECURRING" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Duration" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Optionally used for 3D Secure (Verified by Visa, SecureCode).</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:annotation>
+								<xsd:documentation>Recurring duration. Both Frequence and Expiry must be valid.</xsd:documentation>
+							</xsd:annotation>
+							<xsd:sequence>
+								<xsd:element name="Frequency"
+									type="xsd:int" maxOccurs="1" minOccurs="1">
+									<xsd:annotation>
+										<xsd:documentation>The frequency you want to set. The value of aFrequency indicates the minimum number of days between authorizations. A frequency of monthly is indicated by a value of 28. The earliest possible date for each authorization is based on the actual date of the prior authorization.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="Expiry"
+									type="xsd:date" maxOccurs="1" minOccurs="1">
+									<xsd:annotation>
+										<xsd:documentation>The expiry you want to set. The value specifies the date after which no further authorizations should be performed. This date must be in the future.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="SubscriptionId" maxOccurs="1"
+						minOccurs="0">
+                <xsd:annotation>
+                	<xsd:documentation>Optional SubscriptionId of this payment.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                	<xsd:restriction base="xsd:string">
+                		<xsd:maxLength value="20"></xsd:maxLength>
+                	</xsd:restriction>
+                </xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="PaymentMethodName">
+				<xsd:annotation>
+					<xsd:documentation>The name of the payment method, such as the card type used, e.g. VISA or UNKNOWN CARD.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:token">
+					<xsd:maxLength value="60" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="CountryCode">
+				<xsd:annotation>
+					<xsd:documentation>ISO-3166 A2 country code.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:token">
+					<xsd:length value="2" />
+					<xsd:pattern value="[A-Za-z]{2}"></xsd:pattern>
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="LanguageCode">
+				<xsd:annotation>
+					<xsd:documentation>Two-letter primary-tag (ISO-639 language abbreviation) and optionally an underscore and any two-letter initial subtag (ISO-3166 country code). E.g. en_us, sv_se.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:token">
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="PaymentMethodCategory">
+                <xsd:annotation>
+                	<xsd:documentation>Indicates how the payment method is categorized. Also hints as to what type to find as the TransactionResult element.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:token">
+					<xsd:maxLength value="60" />
+					<xsd:enumeration value="Card"></xsd:enumeration>
+					<xsd:enumeration value="Offline"></xsd:enumeration>
+					<xsd:enumeration value="Redirect"></xsd:enumeration>
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:element name="GetPaymentMethodsRequest">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="MerchantInfo"
+							type="MerchantInfo" maxOccurs="1" minOccurs="1" />
+						<xsd:element name="CountryCode"
+							type="CountryCode" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+						<xsd:element name="PaymentMethodType"
+							type="PaymentMethodType" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+						<xsd:element name="PaymentMethodGroup"
+							type="PaymentMethodGroup" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+						<xsd:element name="Currency"
+							type="Currency" maxOccurs="1" minOccurs="0">
+						</xsd:element>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetPaymentMethodsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PaymentMethod"
+							type="PaymentMethod" maxOccurs="unbounded" minOccurs="0">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:simpleType name="PaymentMethodType">
+                <xsd:annotation>
+                	<xsd:documentation>The type of the payment. Used for reportinng. Ex: Card, EFT, Direct Debit, IBP, eWallet.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string"></xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="PaymentMethodSubType">
+				<xsd:annotation>
+					<xsd:documentation>The sub type of card payment methods. Used for reportinng. Ex: Credit, Debit, Prepaid.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string"></xsd:restriction>
+			</xsd:simpleType>
+
+
+            <xsd:simpleType name="PaymentMethodGroup">
+				<xsd:annotation>
+                	<xsd:documentation>Payment Method Group is used to group payment options when presenting to the consumer. E.g. Ideal.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string"></xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:complexType name="PaymentMethod">
+                <xsd:annotation>
+                	<xsd:documentation>Attributes of the Payment Method. This list can be extended with new elements in new releases.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+            		<xsd:element name="Id" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+                        <xsd:annotation>
+                        	<xsd:documentation>The Digital River World Payments Payment Method Id.</xsd:documentation>
+                        </xsd:annotation>
+            		</xsd:element>
+            		<xsd:element name="Name" type="PaymentMethodName"
+            			maxOccurs="1" minOccurs="1">
+                        <xsd:annotation>
+                        	<xsd:documentation>The Payment Method Name.</xsd:documentation>
+                        </xsd:annotation>
+            		</xsd:element>
+            		<xsd:element name="Category" type="PaymentMethodCategory"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="Type" type="PaymentMethodType"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="Group" type="PaymentMethodGroup"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="Execution" type="PaymentmethodExecution"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="CountryCurrencyList" type="CountryCurrency" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            		<xsd:element name="RefundMethods" type="RefundMethod"
+						maxOccurs="unbounded" minOccurs="0">
+					</xsd:element>
+					<xsd:element name="SubType" type="PaymentMethodSubType" maxOccurs="unbounded" minOccurs="0">
+					</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="CountryCurrency">
+            	<xsd:sequence>
+            		<xsd:element name="CountryCode"
+            			type="CountryCode" maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="Currency" type="Currency"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="RefundMethod">
+                <xsd:annotation>
+                	<xsd:documentation>List of refund methods that can be used in refundOrder() request to do refund on this payment method.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                	<xsd:element name="PaymentMethodId" type="xsd:int"
+                		maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>The Payment method that can be used to refund transactions on this payment method.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="NeedBeneficiaryInfo"
+                		type="xsd:boolean" maxOccurs="1" minOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>Account information of the Beneficiary needs to be provided and included with the refund transaction. The default is false.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                	<xsd:element name="WaitForFundingEvent"
+                		type="xsd:boolean" maxOccurs="1" minOccurs="0">
+                		<xsd:annotation>
+                			<xsd:documentation>The refund cannot be processed before there has been a successful collection of the payment that is being referenced. The default is false.</xsd:documentation>
+                		</xsd:annotation>
+                	</xsd:element>
+                </xsd:sequence>
+			</xsd:complexType>
+
+            <xsd:simpleType name="PaymentmethodExecution">
+                <xsd:annotation>
+                	<xsd:documentation>The nature of the payment method.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+            		<xsd:enumeration value="Realtime"></xsd:enumeration>
+            		<xsd:enumeration value="Delayed"></xsd:enumeration>
+            		<xsd:enumeration value="Undefined"></xsd:enumeration>
+            	</xsd:restriction>
+            </xsd:simpleType>
+
+            <xsd:complexType name="LineItem">
+            	<xsd:sequence>
+
+            		<xsd:element name="ProductId" maxOccurs="1"
+            			minOccurs="1">
+            			<xsd:annotation>
+            				<xsd:documentation>Merchant ProductId. The identifier of the product that is being sold used for reporting and export control.</xsd:documentation>
+            			</xsd:annotation>
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:maxLength value="20"></xsd:maxLength>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+
+            		<xsd:element name="Description" maxOccurs="1"
+            			minOccurs="0">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:maxLength value="256"></xsd:maxLength>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="Quantity" type="xsd:decimal"
+            			maxOccurs="1" minOccurs="1">
+            			<xsd:annotation>
+            				<xsd:documentation>The quantity of same products that are sold and are grouped on this line. Minium is always 1 unit.</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element name="ItemAmount" type="xsd:decimal"
+            			maxOccurs="1" minOccurs="1">
+            			<xsd:annotation>
+            				<xsd:documentation>The final price of the product after all discounts and calculations (such as VAT inclusive priceing) have been removed. This is the amount that applies to 1 unit of product. If none exists then zero.</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            <xsd:element name="Tax" type="TaxType" maxOccurs="1" minOccurs="0">
+            	<xsd:annotation>
+            		<xsd:documentation>Tax part of ItemAmount</xsd:documentation>
+            	</xsd:annotation></xsd:element>
+        </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TaxType">
+            	<xsd:annotation></xsd:annotation>
+            	<xsd:choice>
+            		<xsd:element name="TaxAmount" type="xsd:decimal">
+            			<xsd:annotation></xsd:annotation>
+            		</xsd:element>
+            		<xsd:element name="TaxRate" type="xsd:decimal">
+            			<xsd:annotation></xsd:annotation>
+            		</xsd:element>
+            	</xsd:choice>
+            </xsd:complexType>
+
+</xsd:schema>

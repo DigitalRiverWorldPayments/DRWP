@@ -1,0 +1,42 @@
+
+  body {
+    font-family: Helvetica, Geneva, Arial,
+          SunSans-Regular, sans-serif;
+    color: #666;
+    background-color: #CCCCCC } 
+  h1 {
+    font-family: Helvetica, Geneva, Arial,
+          SunSans-Regular, sans-serif }
+  td#BD {
+	border: 1 ;
+	background-color: #efefef ;
+}
+  td#NB { border: 0px ; }
+
+  td {
+	font-family: Helvetica, Geneva, Arial,
+          SunSans-Regular, sans-serif ;
+		  color: #000066 ;
+	}
+
+	span.param_name{
+	    color: Blue ;
+	}
+	spn.rdonly_span{
+	    border-width: px;
+	    border-style: solid;
+	    }
+		
+
+    img {position:absolute;top:0;bottom:0;margin:auto;}
+	
+div#URLhead { color: #000066 ; line-height: 100%; position:relative; }
+div#URLtext { width: 30em; word-wrap: break-word; color: #666 ; font-size: 9pt; }
+div#URLt2     { width: 500px; overflow-wrap: break-word; color: #666 ; font-size: 9pt; }
+
+div#TBL1 {
+     -webkit-column-count: 2; /* Chrome, Safari, Opera */
+     -moz-column-count: 2; /* Firefox */
+     column-count: 2;
+ }
+ 
